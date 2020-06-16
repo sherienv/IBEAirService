@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.iata.org/IATA/EDIST" xmlns:edist="http://www.iata.org/IATA/EDIST" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <xsd:element name="AirShoppingRQ">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:PointOfSale"/>
+                <xsd:element ref="edist:Parameters"/>
+                <xsd:element ref="edist:Travelers"/>
+                <xsd:element ref="edist:CoreQuery"/>
+                <xsd:element ref="edist:Preferences"/>
+                <xsd:element ref="edist:Metadata"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PointOfSale">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Location"/>
+                <xsd:element ref="edist:AugmentationPoint"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Location">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:CountryCode"/>
+                <xsd:element ref="edist:CityCode"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CountryCode">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="CityCode">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="Parameters">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:CurrCodes"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CurrCodes">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:CurrCode"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CurrCode" type="xsd:NCName"/>
+    <xsd:element name="Travelers">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Traveler"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Traveler">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:AnonymousTraveler"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AnonymousTraveler">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:PTC"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PTC">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:NCName">
+                    <xsd:attribute name="Quantity" use="required" type="xsd:integer"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CoreQuery">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:OriginDestinations"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="OriginDestinations">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="edist:OriginDestination"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="OriginDestination">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Departure"/>
+                <xsd:element ref="edist:Arrival"/>
+            </xsd:sequence>
+            <xsd:attribute name="OriginDestinationKey" use="required" type="xsd:NCName"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Departure">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="edist:AirportCode">
+                    <xsd:sequence>
+                        <xsd:element ref="edist:Date"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Date" type="xsd:NMTOKEN"/>
+    <xsd:element name="Arrival" type="edist:AirportCode"/>
+    <xsd:element name="Preferences">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="edist:Preference"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Preference">
+        <xsd:complexType>
+            <xsd:choice>
+                <xsd:element ref="edist:CabinPreferences"/>
+                <xsd:element ref="edist:FarePreferences"/>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CabinPreferences">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:CabinType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CabinType">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="edist:Code">
+                    <xsd:attribute name="refs" use="required" type="xsd:NCName"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FarePreferences">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Types"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Types">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Type"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Type">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="edist:Code">
+                    <xsd:attribute name="PreferencesLevel" use="required" type="xsd:NCName"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Metadata">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Shopping"/>
+                <xsd:element ref="edist:Other"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Shopping">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:ShopMetadataGroup"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ShopMetadataGroup">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:Flight"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Flight">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:FlightMetadatas"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FlightMetadatas">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:FlightMetadata"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="FlightMetadata">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:AugmentationPoint"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Other">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:OtherMetadata"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="OtherMetadata">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:AirportMetadatas"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AirportMetadatas">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="edist:AirportMetadata"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AirportMetadata">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:AugmentationPoint"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AugmentationPoint">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="edist:AugPoint"/>
+                <xsd:element minOccurs="0" ref="edist:Lists"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AugPoint">
+        <xsd:complexType>
+            <xsd:sequence>
+               <!-- <xsd:element ref="xs:Value"/> -->
+            </xsd:sequence>
+            <xsd:attribute name="Key" type="xsd:NCName"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Lists">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:List"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="AirportCode">
+        <xsd:sequence>
+            <xsd:element ref="edist:AirportCode"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AirportCode" type="xsd:NCName"/>
+    <xsd:complexType name="Code">
+        <xsd:sequence>
+            <xsd:element ref="edist:Code"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Code" type="xsd:NMTOKEN"/>
+    <xsd:element name="List">
+        <xsd:complexType mixed="true">
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element ref="edist:AugPointAssoc"/>
+                <xsd:element ref="edist:NamedAssocs"/>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AugPointAssoc">
+        <xsd:complexType>
+            <xsd:attribute name="refs" use="required" type="xsd:integer"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="NamedAssocs">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="edist:NamedAssoc"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="NamedAssoc">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" ref="edist:List"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
