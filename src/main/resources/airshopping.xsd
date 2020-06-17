@@ -251,7 +251,7 @@
     <xsd:element name="AugPoint">
         <xsd:complexType>
             <xsd:sequence>
-               <!-- <xsd:element ref="xs:Value"/> -->
+                <!-- <xsd:element ref="xs:Value"/> -->
             </xsd:sequence>
             <xsd:attribute name="Key" type="xsd:NCName"/>
         </xsd:complexType>
