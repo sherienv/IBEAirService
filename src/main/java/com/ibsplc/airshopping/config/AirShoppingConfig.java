@@ -13,4 +13,6 @@ public class AirShoppingConfig {
         marshaller.setPackagesToScan("org.iata.iata.edist");
         return marshaller;
     }
+
+
 }
