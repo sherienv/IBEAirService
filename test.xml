@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:Envelope xmlns:ns2="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:ns3="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns4="http://www.iata.org/IATA/EDIST" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ns3:Header>
+        <ns2:Security>
+            <ns2:UsernameToken>
+                <ns2:Username>internal</ns2:Username>
+                <ns2:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">838995afc6c9a1ce871e778b7c9592c3d93658b1</ns2:Password>
+            </ns2:UsernameToken>
+        </ns2:Security>
+        <x-external-auth-channel>B2B1@XQ</x-external-auth-channel>
+    </ns3:Header>
+    <ns3:Body>
+        <ns4:AirShoppingRQ>
+            <ns4:PointOfSale>
+                <ns4:Location/>
+                <ns4:AugmentationPoint>
+                    <ns4:AugPoint Key="ISOCurrency">
+                        <xsi:Value>EUR</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="RequestorType">
+                        <xsi:Value>BUSINESSUSER</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="RequestorID">
+                        <xsi:Value>HRG</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="RequestingUserID">
+                        <xsi:Value>XQAdmin</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="BookingChannelType">
+                        <xsi:Value>B2E</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="Market">
+                        <xsi:Value>NO</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="AgencyConsortium"/>
+                    <ns4:AugPoint Key="OrganizationalUnitCode">
+                        <xsi:Value>HRGAS</xsi:Value>
+                    </ns4:AugPoint>
+                    <ns4:AugPoint Key="Role"/>
+                    <ns4:AugPoint Key="ProfileID"/>
+                    <ns4:AugPoint Key="Primary_FirstName"/>
+                    <ns4:AugPoint Key="Primary_LastName"/>
+                    <ns4:AugPoint Key="Primary_Email"/>
+                    <ns4:AugPoint Key="Primary_PhoneNumber"/>
+                    <ns4:AugPoint Key="Primary_Language"/>
+                    <ns4:AugPoint Key="Primary_Address"/>
+                    <ns4:AugPoint Key="Primary_Street"/>
+                    <ns4:AugPoint Key="Primary_StateProv"/>
+                    <ns4:AugPoint Key="Primary_ZipCode"/>
+                    <ns4:AugPoint Key="Consortium"/>
+                    <ns4:AugPoint Key="AgencyGroup"/>
+                    <ns4:AugPoint Key="AgencyType"/>
+                    <ns4:AugPoint Key="AgencyClass"/>
+                    <ns4:AugPoint Key="AgencyCategory"/>
+                </ns4:AugmentationPoint>
+            </ns4:PointOfSale>
+            <ns4:Parameters>
+                <ns4:CurrCodes>
+                    <ns4:CurrCode>NOK</ns4:CurrCode>
+                </ns4:CurrCodes>
+            </ns4:Parameters>
+            <ns4:Travelers>
+                <ns4:Traveler>
+                    <ns4:AnonymousTraveler>
+                        <ns4:PTC Quantity="2">ADT</ns4:PTC>
+                    </ns4:AnonymousTraveler>
+                </ns4:Traveler>
+            </ns4:Travelers>
+            <ns4:CoreQuery>
+                <ns4:OriginDestinations>
+                    <ns4:OriginDestination OriginDestinationKey="OD1">
+                        <ns4:Departure>
+                            <ns4:AirportCode>LHR</ns4:AirportCode>
+                            <ns4:Date>2020-09-27</ns4:Date>
+                        </ns4:Departure>
+                        <ns4:Arrival>
+                            <ns4:AirportCode>OSL</ns4:AirportCode>
+                        </ns4:Arrival>
+                    </ns4:OriginDestination>
+                    <ns4:OriginDestination OriginDestinationKey="OD2">
+                        <ns4:Departure>
+                            <ns4:AirportCode>LHR</ns4:AirportCode>
+                            <ns4:Date>2020-09-30</ns4:Date>
+                        </ns4:Departure>
+                        <ns4:Arrival>
+                            <ns4:AirportCode>OSL</ns4:AirportCode>
+                        </ns4:Arrival>
+                    </ns4:OriginDestination>
+                </ns4:OriginDestinations>
+            </ns4:CoreQuery>
+            <ns4:Preferences>
+                <ns4:Preference>
+                    <ns4:CabinPreferences>
+                        <ns4:CabinType refs="OD1">
+                            <ns4:Code>M</ns4:Code>
+                        </ns4:CabinType>
+                    </ns4:CabinPreferences>
+                </ns4:Preference>
+                <ns4:Preference>
+                    <ns4:CabinPreferences>
+                        <ns4:CabinType refs="OD1">
+                            <ns4:Code>M</ns4:Code>
+                        </ns4:CabinType>
+                    </ns4:CabinPreferences>
+                </ns4:Preference>
+                <ns4:Preference>
+                    <ns4:FarePreferences>
+                        <ns4:Types>
+                            <ns4:Type PreferencesLevel="Required">
+<ns4:Code>70J</ns4:Code>
+                            </ns4:Type>
+                        </ns4:Types>
+                    </ns4:FarePreferences>
+                </ns4:Preference>
+            </ns4:Preferences>
+            <ns4:Metadata>
+                <ns4:Shopping>
+                    <ns4:ShopMetadataGroup>
+                        <ns4:Flight>
+                            <ns4:FlightMetadatas>
+<ns4:FlightMetadata>
+    <ns4:AugmentationPoint>
+        <ns4:AugPoint Key="IsAdvanceSearch">
+            <xsi:Value>false</xsi:Value>
+        </ns4:AugPoint>
+    </ns4:AugmentationPoint>
+</ns4:FlightMetadata>
+                            </ns4:FlightMetadatas>
+                        </ns4:Flight>
+                    </ns4:ShopMetadataGroup>
+                </ns4:Shopping>
+                <ns4:Other>
+                    <ns4:OtherMetadata>
+                        <ns4:AirportMetadatas>
+                            <ns4:AirportMetadata>
+<ns4:AugmentationPoint>
+    <ns4:AugPoint>
+        <xsi:Value>LHR</xsi:Value>
+    </ns4:AugPoint>
+    <ns4:Lists>
+        <ns4:List>
+            <ns4:AugPointAssoc refs="1"/>
+            <ns4:NamedAssocs>
+                <ns4:NamedAssoc>
+                    <ns4:List>A3 UK LON LHR GB</ns4:List>
+                </ns4:NamedAssoc>
+            </ns4:NamedAssocs>
+        </ns4:List>
+    </ns4:Lists>
+</ns4:AugmentationPoint>
+                            </ns4:AirportMetadata>
+                            <ns4:AirportMetadata>
+<ns4:AugmentationPoint>
+    <ns4:AugPoint>
+        <xsi:Value>OSL</xsi:Value>
+    </ns4:AugPoint>
+    <ns4:Lists>
+        <ns4:List>
+            <ns4:AugPointAssoc refs="1"/>
+            <ns4:NamedAssocs>
+                <ns4:NamedAssoc>
+                    <ns4:List>A3 UK OSL OSL NO</ns4:List>
+                </ns4:NamedAssoc>
+            </ns4:NamedAssocs>
+        </ns4:List>
+    </ns4:Lists>
+</ns4:AugmentationPoint>
+                            </ns4:AirportMetadata>
+                        </ns4:AirportMetadatas>
+                    </ns4:OtherMetadata>
+                </ns4:Other>
+            </ns4:Metadata>
+        </ns4:AirShoppingRQ>
+    </ns3:Body>
+</ns3:Envelope>

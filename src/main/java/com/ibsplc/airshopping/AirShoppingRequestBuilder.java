@@ -1,16 +1,27 @@
 package com.ibsplc.airshopping;
 
 import org.iata.iata.edist.*;
+import org.oasis_open.docs.wss._2004._01.oasis_200401_wss_wssecurity_secext_1_0.Password;
+import org.oasis_open.docs.wss._2004._01.oasis_200401_wss_wssecurity_secext_1_0.Security;
+import org.oasis_open.docs.wss._2004._01.oasis_200401_wss_wssecurity_secext_1_0.UsernameToken;
+import org.xmlsoap.schemas.soap.envelope.Body;
+import org.xmlsoap.schemas.soap.envelope.Envelope;
+import org.xmlsoap.schemas.soap.envelope.Header;
 
 import java.math.BigInteger;
 
 public class AirShoppingRequestBuilder {
 
-    public AirShoppingRQ buildAirShoppingRequest() {
+    public Envelope buildAirShoppingRequest() {
+
+
+        Body body = new Body();
+        Envelope envelope = new Envelope();
         AirShoppingRQ airShoppingRQ = new AirShoppingRQ();
 
-        //Building Airshopping Request -> passing values direclty
-        //PointofSale
+        //Building Airshopping Request -> passing values directly
+
+        //PointofSale Tag
         Location location = new Location();
         location.setCityCode(null);
         location.setCountryCode(null);
@@ -116,13 +127,13 @@ public class AirShoppingRequestBuilder {
         pointOfSale.setLocation(location);
         pointOfSale.setAugmentationPoint(augmentationPoint);
 
-        //Parameters
+        //Parameters Tag
         Parameters parameters = new Parameters();
         CurrCodes currCodes = new CurrCodes();
         currCodes.setCurrCode("NOK");
         parameters.setCurrCodes(currCodes);
 
-        //Travelers
+        //Travelers Tag
         PTC ptc = new PTC();
         ptc.setQuantity(BigInteger.valueOf(2));
         ptc.setValue("ADT");
@@ -133,7 +144,7 @@ public class AirShoppingRequestBuilder {
         Travelers travelers = new Travelers();
         travelers.setTraveler(traveler);
 
-        //CoreQuery
+        //CoreQuery Tag
         AirportCode airportCode = new AirportCode();
         airportCode.setAirportCode("OSL");
         Departure departure = new Departure();
@@ -161,7 +172,7 @@ public class AirShoppingRequestBuilder {
         CoreQuery coreQuery = new CoreQuery();
         coreQuery.setOriginDestinations(originDestinations);
 
-        //Preferences
+        //Preferences Tag
         CabinType cabinType = new CabinType();
         cabinType.setRefs("OD1");
         cabinType.setCode("M");
@@ -193,7 +204,7 @@ public class AirShoppingRequestBuilder {
        preferences.getPreference().add(preference2);
 
 
-        //MetaData
+        //MetaData Tag
 
         //MetaData - Shopping tag
         AugPoint augPoint24 = new AugPoint();
@@ -242,8 +253,6 @@ public class AirShoppingRequestBuilder {
         airportMetadata.setAugmentationPoint(augmentationPoint2);
 
 
-
-
         //Airportmetadata 2
         List list2 = new List();
         list2.getContent().add("A3");
@@ -281,7 +290,7 @@ public class AirShoppingRequestBuilder {
         metadata.setOther(other);
 
 
-        //Building airShopping Request
+        //Building airShopping Request - Body
         airShoppingRQ.setPointOfSale(pointOfSale);
         airShoppingRQ.setParameters(parameters);
         airShoppingRQ.setTravelers(travelers);
@@ -289,7 +298,24 @@ public class AirShoppingRequestBuilder {
         airShoppingRQ.setPreferences(preferences);
         airShoppingRQ.setMetadata(metadata);
 
-        return airShoppingRQ;
+        body.setAirShoppingRQ(airShoppingRQ);
+        envelope.setBody(body);
+
+        //Set Header
+        Header header = new Header();
+        UsernameToken usernameToken = new UsernameToken();
+        Password password = new Password();
+        password.setType("http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText");
+        password.setContent("838995afc6c9a1ce871e778b7c9592c3d93658b1");
+        usernameToken.setUsername("internal");
+        usernameToken.setPassword(password);
+        Security security = new Security();
+        security.setUsernameToken(usernameToken);
+        header.setSecurity(security);
+        header.setXExternalAuthChannel("B2B1@XQ");
+        envelope.setHeader(header);
+
+        return envelope;
     }
 }
 
